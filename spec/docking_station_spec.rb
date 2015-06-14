@@ -27,9 +27,14 @@ describe DockingStation do
       20.times { subject.dock Bike.new }
       expect { subject.dock Bike.new }.to raise_error "Docking Station Full"
     end
+    it 'does not release broken bikes' do
+      subject.dock Bike.new
+      bike = subject.release_bike
+      bike.report_broken
+      expect { subject.dock Bike.new }.to raise_error "No working bikes available"
 
+    end
 
 
   end
 end
-
