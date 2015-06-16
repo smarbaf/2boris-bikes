@@ -14,11 +14,11 @@ class DockingStation
 
     fail 'No bikes available' if empty?
 
-    if
-      bikes.each { |bike| return bikes.delete(bike) if bike.working? }
+    if bikes.each { |bike|
+      return bikes.delete(bike) if bike.working? }
       fail "No working bikes available"
     else
-
+      bikes.pop
     end
   end
 
